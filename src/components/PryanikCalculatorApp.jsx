@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calculator, TrendingUp, Clock, CheckCircle, Package, Users, BarChart3, Sparkles, Moon, Sun } from 'lucide-react';
+import { Calculator, TrendingUp, Clock, CheckCircle, Package, Users, BarChart3, Sparkles, Moon, Sun, Trash2 } from 'lucide-react';
 
 const PryanikCalculatorApp = () => {
   const [currentPage, setCurrentPage] = useState('landing');
@@ -634,50 +634,65 @@ const PryanikCalculatorApp = () => {
                   </button>
                 </div>
 
-                <div className="space-y-3">
-                  {ingredients.map((ing) => (
-                    <div key={ing.id} className="grid grid-cols-12 gap-2 items-center">
-                      <input
-                        type="text"
-                        placeholder="Название"
-                        value={ing.name}
-                        onChange={(e) => updateIngredient(ing.id, 'name', e.target.value)}
-                        className={`col-span-4 px-3 py-2 border ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-pink-500' : 'border-gray-300 focus:border-pink-500'} rounded-lg text-sm focus:outline-none`}
-                      />
-                      <input
-                        type="number"
-                        placeholder="Кол-во"
-                        value={ing.amount}
-                        onChange={(e) => updateIngredient(ing.id, 'amount', parseFloat(e.target.value) || 0)}
-                        className={`col-span-2 px-3 py-2 border ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-pink-500' : 'border-gray-300 focus:border-pink-500'} rounded-lg text-sm focus:outline-none`}
-                      />
-                      <select
-                        value={ing.unit}
-                        onChange={(e) => updateIngredient(ing.id, 'unit', e.target.value)}
-                        className={`col-span-2 px-3 py-2 border ${darkMode ? 'bg-gray-700 border-gray-600 text-white focus:border-pink-500' : 'border-gray-300 focus:border-pink-500'} rounded-lg text-sm focus:outline-none`}
-                      >
-                        <option value="кг">кг</option>
-                        <option value="шт">шт</option>
-                      </select>
-                      <input
-                        type="number"
-                        placeholder="Цена"
-                        value={ing.price}
-                        onChange={(e) => updateIngredient(ing.id, 'price', parseFloat(e.target.value) || 0)}
-                        className={`col-span-2 px-3 py-2 border ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-pink-500' : 'border-gray-300 focus:border-pink-500'} rounded-lg text-sm focus:outline-none`}
-                      />
-                      <div className={`col-span-1 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'} font-semibold`}>
-                        {((ing.unit === 'кг' ? ing.price / 1000 : ing.price) * ing.amount).toFixed(2)}₽
+                {ingredients.length === 0 ? (
+                  <div className={`text-center py-8 ${darkMode ? 'text-gray-400' : 'text-gray-500'} border-2 border-dashed ${darkMode ? 'border-gray-700' : 'border-gray-200'} rounded-xl`}>
+                    <Package size={48} className="mx-auto mb-3 opacity-50" />
+                    <p className="mb-4">Список ингредиентов пуст</p>
+                    <button
+                      onClick={addIngredient}
+                      className="text-pink-600 hover:text-pink-700 font-semibold flex items-center gap-2 mx-auto hover:bg-pink-50 p-2 rounded-lg transition-colors"
+                    >
+                      + Добавить первый ингредиент
+                    </button>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    {ingredients.map((ing) => (
+                      <div key={ing.id} className="grid grid-cols-12 gap-2 items-center">
+                        <input
+                          type="text"
+                          placeholder="Название"
+                          value={ing.name}
+                          onChange={(e) => updateIngredient(ing.id, 'name', e.target.value)}
+                          className={`col-span-4 px-3 py-2 border ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-pink-500' : 'border-gray-300 focus:border-pink-500'} rounded-lg text-sm focus:outline-none`}
+                        />
+                        <input
+                          type="number"
+                          placeholder="Кол-во"
+                          value={ing.amount}
+                          onChange={(e) => updateIngredient(ing.id, 'amount', parseFloat(e.target.value) || 0)}
+                          className={`col-span-2 px-3 py-2 border ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-pink-500' : 'border-gray-300 focus:border-pink-500'} rounded-lg text-sm focus:outline-none`}
+                        />
+                        <select
+                          value={ing.unit}
+                          onChange={(e) => updateIngredient(ing.id, 'unit', e.target.value)}
+                          className={`col-span-2 px-3 py-2 border ${darkMode ? 'bg-gray-700 border-gray-600 text-white focus:border-pink-500' : 'border-gray-300 focus:border-pink-500'} rounded-lg text-sm focus:outline-none`}
+                        >
+                          <option value="кг">кг</option>
+                          <option value="шт">шт</option>
+                        </select>
+                        <input
+                          type="number"
+                          placeholder="Цена"
+                          value={ing.price}
+                          onChange={(e) => updateIngredient(ing.id, 'price', parseFloat(e.target.value) || 0)}
+                          className={`col-span-2 px-3 py-2 border ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-pink-500' : 'border-gray-300 focus:border-pink-500'} rounded-lg text-sm focus:outline-none`}
+                        />
+                        <div className={`col-span-1 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'} font-semibold`}>
+                          {((ing.unit === 'кг' ? ing.price / 1000 : ing.price) * ing.amount).toFixed(2)}₽
+                        </div>
+                        <button
+                          onClick={() => removeIngredient(ing.id)}
+                          className={`col-span-1 text-red-500 hover:text-red-700 flex justify-center items-center p-1.5 rounded transition-colors ${darkMode ? 'hover:bg-red-900/20' : 'hover:bg-red-50'}`}
+                          aria-label="Удалить ингредиент"
+                          title="Удалить ингредиент"
+                        >
+                          <Trash2 size={18} />
+                        </button>
                       </div>
-                      <button
-                        onClick={() => removeIngredient(ing.id)}
-                        className="col-span-1 text-red-500 hover:text-red-700 text-center"
-                      >
-                        ×
-                      </button>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
 
                 <div className={`mt-4 pt-4 border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
                   <div className="flex justify-between items-center text-lg font-bold">
