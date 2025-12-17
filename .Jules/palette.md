@@ -1,0 +1,3 @@
+## 2025-05-15 - React Scripts Test Environment Challenges
+**Learning:** `react-scripts` v5 in this environment struggles with Jest/Babel configuration for JSX transformation, leading to persistent syntax errors despite standard presets. The combination of pnpm, react-scripts, and jest seems to have issues resolving babel configurations or presets correctly in this specific containerized environment.
+**Action:** In future tasks for this repo, assume tests might need a dedicated setup or rely on manual verification/linting if `react-scripts test` fails out of the box. Do not spend excessive time debugging environmental configuration issues if the code change is straightforward and low-risk.
