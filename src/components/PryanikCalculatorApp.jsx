@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calculator, TrendingUp, Clock, CheckCircle, Package, Users, BarChart3, Sparkles, Moon, Sun } from 'lucide-react';
+import { Calculator, TrendingUp, Clock, CheckCircle, Package, Users, BarChart3, Sparkles, Moon, Sun, Trash2 } from 'lucide-react';
 
 const PryanikCalculatorApp = () => {
   const [currentPage, setCurrentPage] = useState('landing');
@@ -640,6 +640,7 @@ const PryanikCalculatorApp = () => {
                       <input
                         type="text"
                         placeholder="Название"
+                        aria-label="Название ингредиента"
                         value={ing.name}
                         onChange={(e) => updateIngredient(ing.id, 'name', e.target.value)}
                         className={`col-span-4 px-3 py-2 border ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-pink-500' : 'border-gray-300 focus:border-pink-500'} rounded-lg text-sm focus:outline-none`}
@@ -647,12 +648,14 @@ const PryanikCalculatorApp = () => {
                       <input
                         type="number"
                         placeholder="Кол-во"
+                        aria-label="Количество"
                         value={ing.amount}
                         onChange={(e) => updateIngredient(ing.id, 'amount', parseFloat(e.target.value) || 0)}
                         className={`col-span-2 px-3 py-2 border ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-pink-500' : 'border-gray-300 focus:border-pink-500'} rounded-lg text-sm focus:outline-none`}
                       />
                       <select
                         value={ing.unit}
+                        aria-label="Единица измерения"
                         onChange={(e) => updateIngredient(ing.id, 'unit', e.target.value)}
                         className={`col-span-2 px-3 py-2 border ${darkMode ? 'bg-gray-700 border-gray-600 text-white focus:border-pink-500' : 'border-gray-300 focus:border-pink-500'} rounded-lg text-sm focus:outline-none`}
                       >
@@ -662,6 +665,7 @@ const PryanikCalculatorApp = () => {
                       <input
                         type="number"
                         placeholder="Цена"
+                        aria-label="Цена"
                         value={ing.price}
                         onChange={(e) => updateIngredient(ing.id, 'price', parseFloat(e.target.value) || 0)}
                         className={`col-span-2 px-3 py-2 border ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-pink-500' : 'border-gray-300 focus:border-pink-500'} rounded-lg text-sm focus:outline-none`}
@@ -671,9 +675,11 @@ const PryanikCalculatorApp = () => {
                       </div>
                       <button
                         onClick={() => removeIngredient(ing.id)}
-                        className="col-span-1 text-red-500 hover:text-red-700 text-center"
+                        className="col-span-1 text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-lg transition flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-red-500"
+                        aria-label="Удалить ингредиент"
+                        title="Удалить ингредиент"
                       >
-                        ×
+                        <Trash2 size={18} />
                       </button>
                     </div>
                   ))}
