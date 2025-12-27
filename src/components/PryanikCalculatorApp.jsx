@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calculator, TrendingUp, Clock, CheckCircle, Package, Users, BarChart3, Sparkles, Moon, Sun } from 'lucide-react';
+import { Calculator, TrendingUp, Clock, CheckCircle, Package, Users, BarChart3, Sparkles, Moon, Sun, Trash2 } from 'lucide-react';
 
 const PryanikCalculatorApp = () => {
   const [currentPage, setCurrentPage] = useState('landing');
@@ -671,9 +671,11 @@ const PryanikCalculatorApp = () => {
                       </div>
                       <button
                         onClick={() => removeIngredient(ing.id)}
-                        className="col-span-1 text-red-500 hover:text-red-700 text-center"
+                        className="col-span-1 text-red-500 hover:text-red-700 flex justify-center items-center hover:bg-red-50 rounded-full w-8 h-8 transition-colors mx-auto"
+                        aria-label={`Удалить ${ing.name || 'ингредиент'}`}
+                        title="Удалить"
                       >
-                        ×
+                        <Trash2 size={16} />
                       </button>
                     </div>
                   ))}
