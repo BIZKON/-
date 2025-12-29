@@ -1,0 +1,42 @@
+# Git
+.git/
+.gitignore
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Documentation
+*.md
+LICENSE
+docs/
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+
+# Environment files
+.env*
+!.env.example
+
+# Turbo
+.turbo/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
