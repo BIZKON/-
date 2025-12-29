@@ -113,7 +113,7 @@ services:
       dockerfile: Dockerfile
     container_name: ceo-os-web
     ports:
-      - "3000:3000"
+      - "3001:3001"
     environment:
       API_URL: http://api:8000/api
       NEXT_PUBLIC_API_URL: http://localhost:8000
