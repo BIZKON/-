@@ -58,14 +58,23 @@ export function PersonaSelector({
           return (
             <div
               key={persona.id}
+              role="checkbox"
+              aria-checked={isSelected}
+              tabIndex={isDisabled ? -1 : 0}
               className={cn(
-                "relative p-4 rounded-xl border-2 cursor-pointer transition-all",
+                "relative p-4 rounded-xl border-2 cursor-pointer transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500",
                 isSelected
                   ? "border-blue-500 bg-blue-50 dark:bg-blue-950"
                   : "border-gray-200 dark:border-gray-700 hover:border-gray-300",
                 isDisabled && "opacity-50 cursor-not-allowed"
               )}
               onClick={() => !isDisabled && togglePersona(persona.id)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  if (!isDisabled) togglePersona(persona.id);
+                }
+              }}
             >
               <div className="flex items-start space-x-3">
                 <div
@@ -82,7 +91,9 @@ export function PersonaSelector({
                     <Checkbox
                       checked={isSelected}
                       disabled={isDisabled}
-                      className="ml-2"
+                      className="ml-2 pointer-events-none"
+                      tabIndex={-1}
+                      aria-hidden="true"
                     />
                   </div>
                   <p className="text-sm text-gray-500 mt-1">{persona.title}</p>
