@@ -1,8 +1,8 @@
 "use client";
 
-import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import { Check } from "lucide-react";
 
 interface Persona {
   id: string;
@@ -58,8 +58,17 @@ export function PersonaSelector({
           return (
             <div
               key={persona.id}
+              role="checkbox"
+              aria-checked={isSelected}
+              tabIndex={isDisabled ? -1 : 0}
+              onKeyDown={(e) => {
+                if (!isDisabled && (e.key === "Enter" || e.key === " ")) {
+                  e.preventDefault();
+                  togglePersona(persona.id);
+                }
+              }}
               className={cn(
-                "relative p-4 rounded-xl border-2 cursor-pointer transition-all",
+                "relative p-4 rounded-xl border-2 cursor-pointer transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                 isSelected
                   ? "border-blue-500 bg-blue-50 dark:bg-blue-950"
                   : "border-gray-200 dark:border-gray-700 hover:border-gray-300",
@@ -79,11 +88,16 @@ export function PersonaSelector({
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <h3 className="font-semibold">{persona.name}</h3>
-                    <Checkbox
-                      checked={isSelected}
-                      disabled={isDisabled}
-                      className="ml-2"
-                    />
+                    <div
+                      className={cn(
+                        "ml-2 h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background flex items-center justify-center",
+                        isSelected
+                          ? "bg-primary text-primary-foreground"
+                          : "border-input"
+                      )}
+                    >
+                      {isSelected && <Check className="h-3 w-3" />}
+                    </div>
                   </div>
                   <p className="text-sm text-gray-500 mt-1">{persona.title}</p>
                   <p className="text-xs text-gray-400 mt-2 line-clamp-2">
