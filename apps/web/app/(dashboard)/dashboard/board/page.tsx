@@ -146,8 +146,8 @@ export default function BoardMeetingPage() {
       {/* Input Section */}
       <Card>
         <CardHeader>
-          <CardTitle>Задайте вопрос</CardTitle>
-          <CardDescription>
+          <CardTitle id="question-title">Задайте вопрос</CardTitle>
+          <CardDescription id="question-desc">
             Опишите вашу бизнес-проблему или вопрос для обсуждения
           </CardDescription>
         </CardHeader>
@@ -155,6 +155,8 @@ export default function BoardMeetingPage() {
           {/* Question input */}
           <div className="space-y-2">
             <Textarea
+              aria-labelledby="question-title"
+              aria-describedby="question-desc"
               placeholder="Например: Как увеличить продажи на 30% в следующем квартале при ограниченном бюджете на маркетинг?"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
