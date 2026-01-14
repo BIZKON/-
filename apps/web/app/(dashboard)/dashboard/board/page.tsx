@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Send, Loader2 } from "lucide-react";
+import { Send, Loader2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -146,8 +146,8 @@ export default function BoardMeetingPage() {
       {/* Input Section */}
       <Card>
         <CardHeader>
-          <CardTitle>Задайте вопрос</CardTitle>
-          <CardDescription>
+          <CardTitle id="question-title">Задайте вопрос</CardTitle>
+          <CardDescription id="question-desc">
             Опишите вашу бизнес-проблему или вопрос для обсуждения
           </CardDescription>
         </CardHeader>
@@ -155,12 +155,35 @@ export default function BoardMeetingPage() {
           {/* Question input */}
           <div className="space-y-2">
             <Textarea
+              id="question-input"
+              aria-labelledby="question-title"
+              aria-describedby="question-desc"
               placeholder="Например: Как увеличить продажи на 30% в следующем квартале при ограниченном бюджете на маркетинг?"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
               className="min-h-[120px]"
               disabled={isLoading}
             />
+            <div className="flex justify-between items-center px-1">
+              <div className="h-6">
+                {question.length > 0 && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 px-2 text-xs text-muted-foreground hover:text-foreground"
+                    onClick={() => setQuestion("")}
+                    type="button"
+                    aria-label="Очистить поле ввода"
+                  >
+                    <X className="mr-1 h-3 w-3" />
+                    Очистить
+                  </Button>
+                )}
+              </div>
+              <span className="text-xs text-muted-foreground">
+                {question.length} символов
+              </span>
+            </div>
           </div>
 
           {/* Persona selector */}
