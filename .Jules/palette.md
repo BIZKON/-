@@ -1,3 +1,7 @@
 ## 2024-05-22 - Accessible Selectable Cards
 **Learning:** Avoid nesting interactive elements like <Checkbox> inside clickable cards. It creates invalid HTML (button in button) and confuses screen readers.
 **Action:** Use role='checkbox' on the container and implement the visual checkbox using a div and icon.
+
+## 2024-05-23 - Accessible Links as Buttons
+**Learning:** Nesting a `<Button>` (which renders a `<button>`) inside a Next.js `<Link>` (which renders an `<a>`) creates invalid HTML and accessibility issues.
+**Action:** Use the `asChild` prop on the `Button` component to pass styles to the underlying `Link` component, ensuring a single semantic `<a>` tag is rendered.
