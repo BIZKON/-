@@ -24,9 +24,9 @@ const personaColors: Record<string, string> = {
 };
 
 const confidenceIcons = {
-  high: <CheckCircle2 className="h-4 w-4 text-green-500" />,
-  medium: <HelpCircle className="h-4 w-4 text-yellow-500" />,
-  low: <AlertCircle className="h-4 w-4 text-red-500" />,
+  high: <CheckCircle2 className="h-4 w-4 text-green-500" aria-hidden="true" />,
+  medium: <HelpCircle className="h-4 w-4 text-yellow-500" aria-hidden="true" />,
+  low: <AlertCircle className="h-4 w-4 text-red-500" aria-hidden="true" />,
 };
 
 export function AdvisorCard({
@@ -97,7 +97,9 @@ export function AdvisorCard({
                   key={index}
                   className="text-sm text-gray-600 dark:text-gray-400 flex items-start"
                 >
-                  <span className="mr-2 text-blue-500">•</span>
+                  <span className="mr-2 text-blue-500" aria-hidden="true">
+                    •
+                  </span>
                   {point}
                 </li>
               ))}
