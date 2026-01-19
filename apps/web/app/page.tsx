@@ -15,12 +15,12 @@ export default function HomePage() {
             <span className="text-2xl font-bold">CEO-OS</span>
           </div>
           <div className="flex items-center space-x-4">
-            <Link href="/login">
-              <Button variant="ghost">Войти</Button>
-            </Link>
-            <Link href="/register">
-              <Button>Начать бесплатно</Button>
-            </Link>
+            <Button variant="ghost" asChild>
+              <Link href="/login">Войти</Link>
+            </Button>
+            <Button asChild>
+              <Link href="/register">Начать бесплатно</Link>
+            </Button>
           </div>
         </nav>
       </header>
@@ -35,12 +35,12 @@ export default function HomePage() {
             Получайте советы от цифровых двойников известных предпринимателей.
             Маск, Тиньков, Дуров и другие помогут принять правильные бизнес-решения.
           </p>
-          <Link href="/register">
-            <Button size="lg" className="text-lg px-8">
+          <Button size="lg" className="text-lg px-8" asChild>
+            <Link href="/register">
               Попробовать бесплатно
               <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
 
         {/* Features */}
