@@ -11,16 +11,16 @@ export default function HomePage() {
       <header className="container mx-auto px-4 py-6">
         <nav className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <Sparkles className="h-8 w-8 text-blue-600" />
+            <Sparkles className="h-8 w-8 text-blue-600" aria-hidden="true" />
             <span className="text-2xl font-bold">CEO-OS</span>
           </div>
           <div className="flex items-center space-x-4">
-            <Link href="/login">
-              <Button variant="ghost">Войти</Button>
-            </Link>
-            <Link href="/register">
-              <Button>Начать бесплатно</Button>
-            </Link>
+            <Button variant="ghost" asChild>
+              <Link href="/login">Войти</Link>
+            </Button>
+            <Button asChild>
+              <Link href="/register">Начать бесплатно</Link>
+            </Button>
           </div>
         </nav>
       </header>
@@ -35,19 +35,19 @@ export default function HomePage() {
             Получайте советы от цифровых двойников известных предпринимателей.
             Маск, Тиньков, Дуров и другие помогут принять правильные бизнес-решения.
           </p>
-          <Link href="/register">
-            <Button size="lg" className="text-lg px-8">
+          <Button size="lg" className="text-lg px-8" asChild>
+            <Link href="/register">
               Попробовать бесплатно
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
+              <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+            </Link>
+          </Button>
         </div>
 
         {/* Features */}
         <div className="mt-24 grid md:grid-cols-3 gap-8">
           <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
             <div className="bg-blue-100 dark:bg-blue-900 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
-              <Users className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+              <Users className="h-8 w-8 text-blue-600 dark:text-blue-400" aria-hidden="true" />
             </div>
             <h3 className="text-xl font-semibold mb-3">Совет Директоров</h3>
             <p className="text-gray-600 dark:text-gray-400">
@@ -57,7 +57,7 @@ export default function HomePage() {
 
           <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
             <div className="bg-purple-100 dark:bg-purple-900 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
-              <FileText className="h-8 w-8 text-purple-600 dark:text-purple-400" />
+              <FileText className="h-8 w-8 text-purple-600 dark:text-purple-400" aria-hidden="true" />
             </div>
             <h3 className="text-xl font-semibold mb-3">Контекст бизнеса</h3>
             <p className="text-gray-600 dark:text-gray-400">
@@ -67,7 +67,7 @@ export default function HomePage() {
 
           <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
             <div className="bg-green-100 dark:bg-green-900 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
-              <Zap className="h-8 w-8 text-green-600 dark:text-green-400" />
+              <Zap className="h-8 w-8 text-green-600 dark:text-green-400" aria-hidden="true" />
             </div>
             <h3 className="text-xl font-semibold mb-3">Мгновенный синтез</h3>
             <p className="text-gray-600 dark:text-gray-400">
