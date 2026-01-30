@@ -61,13 +61,18 @@ export function PersonaSelector({
         {personas.map((persona) => {
           const isSelected = selected.includes(persona.id);
           const isDisabled = !isSelected && selected.length >= maxSelection;
+          const labelId = `persona-label-${persona.id}`;
+          const descId = `persona-desc-${persona.id}`;
 
           return (
             <div
               key={persona.id}
               role="checkbox"
               aria-checked={isSelected}
-              tabIndex={isDisabled ? -1 : 0}
+              aria-labelledby={labelId}
+              aria-describedby={descId}
+              aria-disabled={isDisabled}
+              tabIndex={0}
               onKeyDown={(e) => handleKeyDown(e, persona.id, isDisabled)}
               className={cn(
                 "relative p-4 rounded-xl border-2 cursor-pointer transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
@@ -80,6 +85,7 @@ export function PersonaSelector({
             >
               <div className="flex items-start space-x-3">
                 <div
+                  aria-hidden="true"
                   className={cn(
                     "w-12 h-12 rounded-full flex items-center justify-center text-white font-bold bg-gradient-to-br",
                     personaColors[persona.id] || "from-gray-500 to-gray-700"
@@ -89,8 +95,11 @@ export function PersonaSelector({
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-semibold">{persona.name}</h3>
+                    <h3 id={labelId} className="font-semibold">
+                      {persona.name}
+                    </h3>
                     <div
+                      aria-hidden="true"
                       className={cn(
                         "ml-2 h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background flex items-center justify-center",
                         isSelected
@@ -102,7 +111,9 @@ export function PersonaSelector({
                       {isSelected && <Check className="h-3 w-3" />}
                     </div>
                   </div>
-                  <p className="text-sm text-gray-500 mt-1">{persona.title}</p>
+                  <p id={descId} className="text-sm text-gray-500 mt-1">
+                    {persona.title}
+                  </p>
                   <p className="text-xs text-gray-400 mt-2 line-clamp-2">
                     {persona.style}
                   </p>
