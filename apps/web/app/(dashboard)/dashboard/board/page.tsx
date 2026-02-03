@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Send, Loader2 } from "lucide-react";
+import { Send, Loader2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -153,14 +153,29 @@ export default function BoardMeetingPage() {
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Question input */}
-          <div className="space-y-2">
+          <div className="space-y-2 relative">
             <Textarea
               placeholder="Например: Как увеличить продажи на 30% в следующем квартале при ограниченном бюджете на маркетинг?"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
-              className="min-h-[120px]"
+              className="min-h-[120px] pr-10 pb-6"
               disabled={isLoading}
             />
+            {question && (
+              <Button
+                size="icon"
+                variant="ghost"
+                className="absolute top-2 right-2 h-8 w-8 text-gray-500 hover:text-gray-900"
+                onClick={() => setQuestion("")}
+                aria-label="Очистить вопрос"
+                disabled={isLoading}
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            )}
+            <div className="absolute bottom-2 right-2 text-xs text-gray-400">
+              {question.length} символов
+            </div>
           </div>
 
           {/* Persona selector */}
